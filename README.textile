@@ -14,7 +14,7 @@ Then go to http://localhost:3000
 
 h2. Client Sample Code
 
-```ruby
+<pre>
 require 'rest-client'
 
 base_url      = 'http://rack-oauth2-sample.heroku.com'
@@ -68,4 +68,4 @@ begin
 rescue => e
   p e.response
 end
-```
+</pre>
