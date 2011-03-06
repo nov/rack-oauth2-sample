@@ -1,0 +1,6 @@
+<% form_tag authorizations_path, :class => action do %>
+  <%= hidden_field_tag :client_id, client.identifier %>
+  <%= hidden_field_tag :response_type, response_type %>
+  <%= submit_tag action.to_s.capitalize %>
+  <%= hidden_field_tag action, true %>
+<% end %>

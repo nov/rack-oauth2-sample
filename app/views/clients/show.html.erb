@@ -1,0 +1,19 @@
+<h2><%= @client.name %></h2>
+<dl>
+  <dt>Website</dt>
+  <dd><%= @client.website %></dd>
+  <dt>Redirect URI</dt>
+  <dd><%= @client.redirect_uri %></dd>
+  <dt>Client Identifier</dt>
+  <dd><%= @client.identifier %></dd>
+  <dt>Client Secret</dt>
+  <dd><%= @client.secret %></dd>
+</dl>
+
+<nav>
+  <h3>Start Authorization Request</h3>
+  <ul>
+    <li><%= link_to 'response_type = :code', oauth2_authorize_path(:client_id => @client.identifier, :response_type => :code) %></li>
+    <li><%= link_to 'response_type = :token', oauth2_authorize_path(:client_id => @client.identifier, :response_type => :token) %></li>
+  </ul>
+</nav>

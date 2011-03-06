@@ -1,0 +1,9 @@
+<% form_for @client do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, :required => true %>
+  <%= f.label :website %>
+  <%= f.url_field :website, :required => true %>
+  <%= f.label :redirect_uri %>
+  <%= f.url_field :redirect_uri, :required => true %>
+  <%= f.submit %>
+<% end %>
