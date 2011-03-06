@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <title>Rack::OAuth2 Sample Server</title>
+    <!--[if lt IE9]>
+    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <%= stylesheet_link_tag :all %>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <h1><%= link_to "Rack::OAuth2 Sample Server", root_path %></h1>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer>
+      <small class="copytight">&copy; 2011 <a href="http://github.com/nov">nov matake</a></small>
+    </footer>
+    <div id="fb-root"></div>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <script>
+      FB.init({
+        appId: "<%= Auth::Facebook.config[:client_id] %>",
+        cookie: true,
+        xfbml: true
+      });
+    </script>
+  </body>
+</html>

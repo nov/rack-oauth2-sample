@@ -1,0 +1,9 @@
+development: &defaults
+  client_id: 134143439988157
+  client_secret: 6f19368547f08a468c87f4e1d1e2f273
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
