@@ -20,11 +20,13 @@
     </footer>
     <div id="fb-root"></div>
     <script src="http://connect.facebook.net/en_US/all.js"></script>
-    <script>
-      FB.init({
-        appId: "<%= Auth::Facebook.config[:client_id] %>",
-        cookie: true,
-        xfbml: true
+    <script type="text/javascript">
+      $(function () {
+        FB.init({
+          appId: "<%= Auth::Facebook.config[:client_id] %>",
+          cookie: true,
+          xfbml: true
+        });
       });
     </script>
   </body>

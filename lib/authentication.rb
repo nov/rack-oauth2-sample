@@ -29,6 +29,11 @@ module Authentication
       redirect_to root_url and return false
     end
 
+    def require_oauth_token
+      token = AccessToken.find_by_token request.env[Rack::OAuth2::Server::Resource::Bearer::ACCESS_TOKEN]
+      authenticate token.account
+    end
+
     def authenticate(account)
       raise Unauthorized unless account
       session[:current_account] = account.id

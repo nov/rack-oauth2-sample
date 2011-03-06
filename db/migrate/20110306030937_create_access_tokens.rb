@@ -3,7 +3,7 @@ class CreateAccessTokens < ActiveRecord::Migration
     create_table :access_tokens do |t|
       t.belongs_to :account, :client
       t.string :token
-      t.integer :expires_in
+      t.datetime :expired_at
       t.timestamps
     end
   end

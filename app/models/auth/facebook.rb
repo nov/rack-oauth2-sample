@@ -6,8 +6,6 @@ class Auth::Facebook < ActiveRecord::Base
   end
 
   class << self
-    extend ActiveSupport::Memoizable
-
     def config
       @config ||= if ENV['fb_client_id'] && ENV['fb_client_secret']
         {

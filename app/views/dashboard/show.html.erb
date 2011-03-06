@@ -1,5 +1,7 @@
-<h2>End-User Menu</h2>
-<%= render 'dashboard/as/end_user' %>
-
-<h2>Developer Menu</h2>
-<%= render 'dashboard/as/developer' %>
+<h2>Your Clients</h2>
+<ul>
+  <% current_account.clients.each do |client| %>
+    <li><%= link_to client.name, client_path(client) %></li>
+  <% end %>
+</ul>
+<p><%= link_to 'New Client', new_client_path %></p>

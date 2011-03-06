@@ -13,7 +13,7 @@ module RackOauth2Sample
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -38,5 +38,11 @@ module RackOauth2Sample
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # OAuth2 Resource Server
+    require 'rack/oauth2'
+    config.middleware.use Rack::OAuth2::Server::Resource::Bearer do |req|
+      AccessToken.valid.find_by_token(req.access_token) || req.invalid_token!
+    end
   end
 end
