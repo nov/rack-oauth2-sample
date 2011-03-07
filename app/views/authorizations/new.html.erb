@@ -1,4 +1,4 @@
 <h2><%= link_to @client.name, @client.website %> is requiring your resource access.</h2>
 
-<%= render 'authorizations/form', :client => @client, :response_type => @response_type, :action => :deny %>
-<%= render 'authorizations/form', :client => @client, :response_type => @response_type, :action => :approve %>
+<%= render 'authorizations/form', :client => @client, :response_type => @response_type, :redirect_uri => @redirect_uri, :action => :deny %>
+<%= render 'authorizations/form', :client => @client, :response_type => @response_type, :redirect_uri => @redirect_uri, :action => :approve %>
