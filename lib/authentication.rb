@@ -15,6 +15,10 @@ module Authentication
       nil
     end
 
+    def current_client
+      @current_client
+    end
+
     def authenticated?
       !current_account.blank?
     end
@@ -36,6 +40,7 @@ module Authentication
 
     def require_oauth_client_token
       token = AccessToken.find_by_token request.env[Rack::OAuth2::Server::Resource::Bearer::ACCESS_TOKEN]
+      @current_client = token.client
       raise Unauthorized if token.account
     end
 

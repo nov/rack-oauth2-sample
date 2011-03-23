@@ -26,6 +26,7 @@ token_endpoint = Rack::OAuth2::Server::Token.new do |req, res|
 end
 
 RackOauth2Sample::Application.routes.draw do
+  resource  :client_statistic, :only => :show
   resources :protected_resources, :only => [:index, :show, :create, :destroy]
   resources :clients, :only => [:show, :new, :create]
   resources :authorizations, :only => :create
