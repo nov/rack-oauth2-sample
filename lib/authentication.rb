@@ -34,6 +34,11 @@ module Authentication
       authenticate token.account
     end
 
+    def require_oauth_client_token
+      token = AccessToken.find_by_token request.env[Rack::OAuth2::Server::Resource::Bearer::ACCESS_TOKEN]
+      raise Unauthorized if token.account
+    end
+
     def authenticate(account)
       raise Unauthorized unless account
       session[:current_account] = account.id

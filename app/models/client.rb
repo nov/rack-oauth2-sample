@@ -1,4 +1,5 @@
 class Client < ActiveRecord::Base
+  has_many :access_tokens
   belongs_to :account
 
   before_validation_on_create :setup

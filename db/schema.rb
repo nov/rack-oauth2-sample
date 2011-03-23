@@ -16,12 +16,15 @@ ActiveRecord::Schema.define(:version => 20110306110605) do
     t.integer  "account_id"
     t.integer  "client_id"
     t.string   "token"
+    t.string   "token_type"
     t.datetime "expired_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "accounts", :force => true do |t|
+    t.string   "username"
+    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

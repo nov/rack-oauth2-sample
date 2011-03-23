@@ -3,7 +3,7 @@ class AccessToken < ActiveRecord::Base
   belongs_to :client
 
   before_validation_on_create :setup
-  validates :account, :client, :expires_in, :presence => true
+  validates :client, :expires_in, :presence => true
   validates :token, :presence => true, :uniqueness => true
 
   scope :valid, lambda {
@@ -18,6 +18,7 @@ class AccessToken < ActiveRecord::Base
 
   def setup
     self.token = RandomToken.generate
+    self.token_type = :bearer
     self.expired_at = 3.hours.from_now
   end
 end
