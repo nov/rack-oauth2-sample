@@ -10,14 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110306110605) do
+ActiveRecord::Schema.define(:version => 20110326070517) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "account_id"
     t.integer  "client_id"
+    t.integer  "refresh_token_id"
     t.string   "token"
     t.string   "token_type"
-    t.datetime "expired_at"
+    t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,9 +41,9 @@ ActiveRecord::Schema.define(:version => 20110306110605) do
   create_table "authorization_codes", :force => true do |t|
     t.integer  "account_id"
     t.integer  "client_id"
-    t.string   "code"
+    t.string   "token"
     t.string   "redirect_uri"
-    t.datetime "expired_at"
+    t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,6 +62,15 @@ ActiveRecord::Schema.define(:version => 20110306110605) do
   create_table "protected_resources", :force => true do |t|
     t.integer  "account_id"
     t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "refresh_tokens", :force => true do |t|
+    t.integer  "account_id"
+    t.integer  "client_id"
+    t.string   "token"
+    t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

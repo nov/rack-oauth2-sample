@@ -2,8 +2,8 @@ class CreateAuthorizationCodes < ActiveRecord::Migration
   def self.up
     create_table :authorization_codes do |t|
       t.belongs_to :account, :client
-      t.string :code, :redirect_uri
-      t.datetime :expired_at
+      t.string :token, :redirect_uri
+      t.datetime :expires_at
       t.timestamps
     end
   end
