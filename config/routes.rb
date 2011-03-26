@@ -25,6 +25,7 @@ token_endpoint = Rack::OAuth2::Server::Token.new do |req, res|
     setup_response res, client.access_tokens.create, :with_refresh_token
   when :refresh_token
     refresh_token = client.refresh_tokens.valid.find_by_token(req.refresh_token)
+    req.invalid_grant! unless refresh_token
     setup_response res, refresh_token.access_tokens.create
   else
     # NOTE: extended assertion grant_types are not supported yet.
