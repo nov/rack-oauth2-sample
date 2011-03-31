@@ -13,7 +13,7 @@ token_endpoint = Rack::OAuth2::Server::Token.new do |req, res|
   client.secret == req.client_secret || req.invalid_client!
   case req.grant_type
   when :authorization_code
-    code = AuthorizationCode.valid.find_by_code(req.code)
+    code = AuthorizationCode.valid.find_by_token(req.code)
     req.invalid_grant! if code.blank? || code.redirect_uri != req.redirect_uri
     setup_response res, code.access_token, :with_refresh_token
   when :password
