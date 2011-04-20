@@ -14,37 +14,23 @@ class TokenEndpoint
       when :authorization_code
         code = AuthorizationCode.valid.find_by_token(req.code)
         req.invalid_grant! if code.blank? || code.redirect_uri != req.redirect_uri
-        setup_response res, code.access_token, :with_refresh_token
+        res.access_token = code.access_token.to_bearer_token(:with_refresh_token)
       when :password
         # NOTE: password is not hashed in this sample app. Don't do the same on your app.
         account = Account.find_by_username_and_password(req.username, req.password) || req.invalid_grant!
-        setup_response res, account.access_tokens.create(:client => client), :with_refresh_token
+        res.access_token = account.access_tokens.create(:client => client).to_bearer_token(:with_refresh_token)
       when :client_credentials
         # NOTE: client is already authenticated here.
-        setup_response res, client.access_tokens.create
+        res.access_token = client.access_tokens.create.to_bearer_token
       when :refresh_token
         refresh_token = client.refresh_tokens.valid.find_by_token(req.refresh_token)
         req.invalid_grant! unless refresh_token
-        setup_response res, refresh_token.access_tokens.create
+        res.access_token = refresh_token.access_tokens.create.to_bearer_token
       else
         # NOTE: extended assertion grant_types are not supported yet.
         req.unsupported_grant_type!
       end
     end
-  end
-
-  def setup_response(response, access_token, with_refresh_token = false)
-    bearer_token = Rack::OAuth2::AccessToken::Bearer.new(
-      :access_token => access_token.token,
-      :expires_in => access_token.expires_in
-    )
-    if with_refresh_token
-      bearer_token.refresh_token = access_token.create_refresh_token(
-        :account => access_token.account,
-        :client => access_token.client
-      ).token
-    end
-    response.access_token = bearer_token
   end
 
 end

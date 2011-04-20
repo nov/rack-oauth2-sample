@@ -57,7 +57,7 @@ GEM
     mime-types (1.16)
     multi_json (0.0.5)
     multipart-post (1.1.0)
-    oauth2 (0.3.0)
+    oauth2 (0.4.0)
       faraday (~> 0.6.0)
       multi_json (~> 0.0.4)
     polyglot (0.3.1)
