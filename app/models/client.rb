@@ -4,8 +4,8 @@ class Client < ActiveRecord::Base
   belongs_to :account
 
   before_validation :setup, :on => :create
-  validates :name, :website, :redirect_uri, :account, :presence => true
-  validates :identifier, :secret, :presence => true, :uniqueness => true
+  validates :name, :website, :redirect_uri, :account, :secret, :presence => true
+  validates :identifier, :presence => true, :uniqueness => true
 
   private
 
