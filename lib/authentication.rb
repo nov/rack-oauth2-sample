@@ -15,6 +15,10 @@ module Authentication
       nil
     end
 
+    def current_token
+      @current_token
+    end
+
     def current_client
       @current_client
     end
@@ -34,14 +38,20 @@ module Authentication
     end
 
     def require_oauth_token
-      token = AccessToken.find_by_token request.env[Rack::OAuth2::Server::Resource::Bearer::ACCESS_TOKEN]
-      authenticate token.account
+      @current_token = AccessToken.find_by_token request.env[Rack::OAuth2::Server::Resource::ACCESS_TOKEN]
+      raise Rack::OAuth2::Server::Resource::Bearer::Unauthorized unless @current_token
+    end
+
+    def require_oauth_user_token
+      require_oauth_token
+      raise Rack::OAuth2::Server::Resource::Bearer::Unauthorized.new(:invalid_token, 'User token is required') unless @current_token.account
+      authenticate @current_token.account
     end
 
     def require_oauth_client_token
-      token = AccessToken.find_by_token request.env[Rack::OAuth2::Server::Resource::Bearer::ACCESS_TOKEN]
-      @current_client = token.client
-      raise Unauthorized if token.account
+      require_oauth_token
+      raise Rack::OAuth2::Server::Resource::Bearer::Unauthorized.new(:invalid_token, 'Client token is required') if @current_token.account
+      @current_client = @current_token.client
     end
 
     def authenticate(account)

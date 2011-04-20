@@ -1,6 +1,6 @@
 <h2>Your Credentials</h2>
 <p>NOTE: Your password isn't hashed in this sample app. Don't put any REAL password!</p>
-<% form_for current_account, :url => account_path, :method => :put, :remote => true do |f| %>
+<%= form_for current_account, :url => account_path, :method => :put, :remote => true do |f| %>
   <%= f.text_field :username, :placeholder => 'Username' %>
   <%= f.password_field :password, :placeholder => 'Password' %>
   <%= f.submit 'Save', :disable_with => 'Saving..' %>

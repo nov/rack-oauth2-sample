@@ -1,5 +1,5 @@
 class ProtectedResourcesController < ApplicationController
-  before_filter :require_oauth_token
+  before_filter :require_oauth_user_token
 
   def index
     render :json => current_account.protected_resources.to_json

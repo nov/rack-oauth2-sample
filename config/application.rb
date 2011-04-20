@@ -41,7 +41,7 @@ module RackOauth2Sample
 
     # OAuth2 Resource Server
     require 'rack/oauth2'
-    config.middleware.use Rack::OAuth2::Server::Resource::Bearer do |req|
+    config.middleware.use Rack::OAuth2::Server::Resource::Bearer, 'Rack::OAuth2 Sample Protected Resources' do |req|
       AccessToken.valid.find_by_token(req.access_token) || req.invalid_token!
     end
   end
