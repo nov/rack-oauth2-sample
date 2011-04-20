@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(:version => 20110326070517) do
     t.integer  "client_id"
     t.integer  "refresh_token_id"
     t.string   "token"
-    t.string   "token_type"
     t.datetime "expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"

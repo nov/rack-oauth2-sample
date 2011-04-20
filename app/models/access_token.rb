@@ -27,6 +27,5 @@ class AccessToken < ActiveRecord::Base
       self.client = refresh_token.client
       self.expires_at = [self.expires_at, refresh_token.expires_at].min
     end
-    self.token_type = :bearer
   end
 end
