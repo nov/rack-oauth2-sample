@@ -26,7 +26,7 @@ class Auth::Facebook < ActiveRecord::Base
     def authenticate(cookies)
       _auth_ = auth.from_cookie(cookies)
       fb_user = find_or_initialize_by_identifier _auth_.user.identifier
-      fb_user.access_token = _auth_.access_token.token
+      fb_user.access_token = _auth_.access_token.access_token
       fb_user.save!
       fb_user.account || fb_user.create_account
     end
