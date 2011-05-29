@@ -18,6 +18,9 @@ body > .container {
 body > .container img {
   border: 1px solid #ddd;
 }
+body > .container aside {
+  margin-top: 80px;
+}
 body > footer {
   clear: both;
   color: #C1B49A;
