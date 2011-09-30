@@ -14,5 +14,5 @@ Then go to http://localhost:3000
 
 h2. Client Sample Code
 
-Read "Bearer" samples in "Sample Client" section here.
+Read "Common between Bearer and MAC" and "Bearer" samples in "Sample Client" section here.
 https://github.com/nov/rack-oauth2
