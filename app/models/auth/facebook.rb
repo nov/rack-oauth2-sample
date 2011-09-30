@@ -28,7 +28,7 @@ class Auth::Facebook < ActiveRecord::Base
       fb_user = find_or_initialize_by_identifier _auth_.user.identifier
       fb_user.access_token = _auth_.access_token.access_token
       fb_user.save!
-      fb_user.account || Account.create!(facebook: connect)
+      fb_user.account || Account.create!(facebook: fb_user)
     end
   end
 end
