@@ -52,6 +52,7 @@ GEM
       arel (~> 2.0.7)
     mime-types (1.19)
     multi_json (1.5.0)
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.2.6)
     rack-mount (0.6.14)
@@ -95,6 +96,7 @@ PLATFORMS
 DEPENDENCIES
   fb_graph
   meta_where
+  pg
   rack-oauth2
   rails (~> 3.0.19)
   sqlite3
